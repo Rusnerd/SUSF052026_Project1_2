@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Photo Trips</title></head>
+<body>
+<h1>Photo Trips</h1>
+
+<ul>
+    <li th:each="t : ${trips}">
+        <a th:href="@{/photo-trips/{id}(id=${t.id})}" th:text="${t.title}">Trip</a>
+    </li>
+</ul>
+
+<p><a th:href="@{/host/photo-trips}">Host area</a></p>
+</body>
+</html>

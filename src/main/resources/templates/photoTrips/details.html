@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head><meta charset="UTF-8"><title>Trip Details</title></head>
+<body>
+<h1 th:text="${trip.title}">Title</h1>
+
+<p><b>Location:</b> <span th:text="${trip.location}"></span></p>
+<p><b>Dates:</b> <span th:text="${trip.startDate}"></span> - <span th:text="${trip.endDate}"></span></p>
+<p><b>Max participants:</b> <span th:text="${trip.maxParticipants}"></span></p>
+<p><b>Price:</b> <span th:text="${trip.pricePerPerson}"></span></p>
+<p th:text="${trip.description}"></p>
+
+<p>
+    <a th:href="@{/host/photo-trips/{id}/edit(id=${trip.id})}">Edit</a>
+</p>
+
+<form th:action="@{/host/photo-trips/{id}(id=${trip.id})}" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+    <button type="submit">Delete</button>
+</form>
+
+<p><a th:href="@{/photo-trips}">Back</a></p>
+</body>
+</html>
