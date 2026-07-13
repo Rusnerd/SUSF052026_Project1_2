@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Edit Photo Trip</title></head>
+<body>
+<h1>Edit Photo Trip</h1>
+
+<form th:action="@{/host/photo-trips/{id}(id=${id})}" th:object="${dto}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+
+    <div>
+        <label>Title</label>
+        <input th:field="*{title}" />
+        <span style="color:red" th:errors="*{title}"></span>
+    </div>
+
+    <div>
+        <label>Description</label>
+        <textarea th:field="*{description}"></textarea>
+        <span style="color:red" th:errors="*{description}"></span>
+    </div>
+
+    <div>
+        <label>Location</label>
+        <input th:field="*{location}" />
+        <span style="color:red" th:errors="*{location}"></span>
+    </div>
+
+    <div>
+        <label>Start date</label>
+        <input type="date" th:field="*{startDate}" />
+        <span style="color:red" th:errors="*{startDate}"></span>
+    </div>
+
+    <div>
+        <label>End date</label>
+        <input type="date" th:field="*{endDate}" />
+        <span style="color:red" th:errors="*{endDate}"></span>
+    </div>
+
+    <div>
+        <label>Max participants</label>
+        <input type="number" th:field="*{maxParticipants}" />
+        <span style="color:red" th:errors="*{maxParticipants}"></span>
+    </div>
+
+    <div>
+        <label>Price per person</label>
+        <input type="number" step="0.01" th:field="*{pricePerPerson}" />
+        <span style="color:red" th:errors="*{pricePerPerson}"></span>
+    </div>
+
+    <button type="submit">Save changes</button>
+</form>
+
+<p><a th:href="@{/host/photo-trips}">Back</a></p>
+</body>
+</html>
