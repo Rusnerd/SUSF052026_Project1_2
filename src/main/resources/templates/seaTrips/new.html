@@ -6,7 +6,7 @@
 <body>
 <h1>Create Sea Trip</h1>
 <form th:action="@{/host/sea-trips}" th:object="${dto}" method="post">
-    <!-- All fields like PhotoTrip + marineActivities and destinationPort -->
+    <!-- All fields like SeaTrip + marineActivities and destinationPort -->
     <div>
         <label>Title</label>
         <input th:field="*{title}" />

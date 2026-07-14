@@ -7,11 +7,12 @@
 <h1 th:text="${trip.title}"></h1>
 <p><strong>Location:</strong> <span th:text="${trip.location}"></span></p>
 <p><strong>Dates:</strong> <span th:text="${trip.startDate}"></span> - <span th:text="${trip.endDate}"></span></p>
-<p><strong>Marine Activities:</strong> <span th:text="${trip.marineActivities}"></span></p>
-<p><strong>Destination Port:</strong> <span th:text="${trip.destinationPort}"></span></p>
+<p><strong>Mountain Activities:</strong> <span th:text="${trip.mountainActivities}"></span></p>
+<p><strong>Destination Peak:</strong> <span th:text="${trip.destinationPeak}"></span></p>
+<p><strong>Destination Hut:</strong> <span th:text="${trip.destinationHut}"></span></p>
 
-<a th:href="@{/host/sea-trips/{id}/edit(id=${trip.id})}">Edit</a>
-<form th:action="@{/host/sea-trips/{id}(id=${trip.id})}" method="post">
+<a th:href="@{/host/mountain-trips/{id}/edit(id=${trip.id})}">Edit</a>
+<form th:action="@{/host/mountain-trips/{id}(id=${trip.id})}" method="post">
     <input type="hidden" name="_method" value="delete"/>
     <button type="submit">Delete</button>
 </form>

@@ -2,11 +2,11 @@
 <html lang="en">
 
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>New Sea Trip</title></head>
+<head><meta charset="UTF-8"><title>New Mountain Trip</title></head>
 <body>
-<h1>Create Sea Trip</h1>
-<form th:action="@{/host/sea-trips}" th:object="${dto}" method="post">
-    <!-- All fields like PhotoTrip + marineActivities and destinationPort -->
+<h1>Create Mountain Trip</h1>
+<form th:action="@{/host/mountain-trips}" th:object="${dto}" method="post">
+    <!-- All fields like MountainTrip + MountainActivities and destinationPeak and Hut -->
     <div>
         <label>Title</label>
         <input th:field="*{title}" />

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Edit Sea Trip</title></head>
+<head><meta charset="UTF-8"><title>Edit Mountain Trip</title></head>
 <body>
-<h1>Edit Sea Trip</h1>
+<h1>Edit Mountain Trip</h1>
 
 <form th:action="@{/host/sea-trips/{id}(id=${id})}" th:object="${dto}" method="post">
     <input type="hidden" name="_method" value="put"/>
