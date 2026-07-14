@@ -16,9 +16,11 @@
 
 ## Functionalities 
 1. Host CRUD PhotoTrip
-2. Create / Cancel Booking (TRAVELER)
-3. Manage Itinerary Items (GUIDE/HOST)
-4. View My Bookings
+2. Host CRUD SeaTrip
+3. Host CRUD MountainTrip
+4. Create / Cancel Booking (TRAVELER)
+5. Manage Itinerary Items (GUIDE/HOST)
+6. View My Bookings
 
 ## Security
 Session-based login with roles (HOST, GUIDE, TRAVELER)
