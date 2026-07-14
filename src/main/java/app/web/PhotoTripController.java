@@ -2,6 +2,7 @@ package app.web;
 
 
 import app.model.entity.PhotoTrip;
+import app.model.enums.UserRole;
 import app.service.PhotoTripService;
 import app.service.exceptions.InvalidTripDateRangeException;
 import app.web.dto.PhotoTripCreateUpdateDto;
@@ -131,6 +132,19 @@ public class PhotoTripController {
         if (role == null || !"HOST".equals(role.toString())) {
             throw new IllegalStateException("HOST access required. (Implement login next.)");
         }
+    }
+    private void requireRole(HttpSession session, UserRole required) {
+        String roleStr = (String) session.getAttribute("role");
+        if (roleStr == null || !UserRole.valueOf(roleStr).equals(required) &&
+                !UserRole.valueOf(roleStr).equals(UserRole.HOST)) { // HOST can do more
+            throw new IllegalStateException("Access denied. Required role: " + required);
+        }
+    }
+
+    // PhotoTripController:
+    @GetMapping("/host/photo-trips/new")
+    public String newForm(HttpSession session, Model model) {
+        requireRole(session, UserRole.HOST);
     }
 }
 
