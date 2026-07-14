@@ -11,6 +11,13 @@
 <p><b>Price:</b> <span th:text="${trip.pricePerPerson}"></span></p>
 <p th:text="${trip.description}"></p>
 
+<!-- Inside the trip details page -->
+<h2>Itinerary</h2>
+<a th:href="@{/itinerary/trip/{tripId}(tripId=${trip.id})}">Manage Itinerary</a>
+
+<h2>Booking</h2>
+<a th:href="@{/bookings/new/{tripId}(tripId=${trip.id})}">Book This Trip</a>
+
 <p>
     <a th:href="@{/host/photo-trips/{id}/edit(id=${trip.id})}">Edit</a>
 </p>

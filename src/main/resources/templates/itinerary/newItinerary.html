@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Itinerary Item</title>
+</head>
+<body>
+<h1>Add New Itinerary Item</h1>
+
+<form th:action="@{/itinerary}" th:object="${dto}" method="post">
+    <input type="hidden" name="tripId" th:value="${tripId}"/>
+
+    <div>
+        <label>Day Number:</label>
+        <input type="number" th:field="*{dayNumber}" min="1" required/>
+        <span style="color:red" th:errors="*{dayNumber}"></span>
+    </div>
+
+    <div>
+        <label>Activity Title:</label>
+        <input type="text" th:field="*{activityTitle}" required/>
+        <span style="color:red" th:errors="*{activityTitle}"></span>
+    </div>
+
+    <div>
+        <label>Location:</label>
+        <input type="text" th:field="*{location}"/>
+    </div>
+
+    <div>
+        <label>Start Time:</label>
+        <input type="datetime-local" th:field="*{startTime}"/>
+    </div>
+
+    <div>
+        <label>End Time:</label>
+        <input type="datetime-local" th:field="*{endTime}"/>
+    </div>
+
+    <div>
+        <label>Notes:</label><br>
+        <textarea th:field="*{notes}" rows="4" cols="50"></textarea>
+    </div>
+
+    <button type="submit">Save Itinerary Item</button>
+</form>
+
+<p><a th:href="@{/itinerary/trip/{tripId}(tripId=${tripId})}">← Back to Itinerary</a></p>
+</body>
+</html>

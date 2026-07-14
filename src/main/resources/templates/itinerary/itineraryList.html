@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Itinerary List</title>
+</head>
+<body>
+<h1>Itinerary for Trip</h1>
+
+<div th:if="${success}" style="color: green;" th:text="${success}"></div>
+
+<a th:href="@{/itinerary/new/{tripId}(tripId=${tripId})}">+ Add New Itinerary Item</a>
+
+<ul>
+    <li th:each="item : ${items}">
+        Day <span th:text="${item.dayNumber}"></span>:
+        <strong th:text="${item.activityTitle}"></strong>
+        at <span th:text="${item.location}"></span>
+
+        <form th:action="@{/itinerary/{itemId}(itemId=${item.id})}" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete"/>
+            <input type="hidden" name="tripId" th:value="${tripId}"/>
+            <button type="submit" onclick="return confirm('Delete this item?')">Delete</button>
+        </form>
+    </li>
+</ul>
+
+<p><a th:href="@{/photo-trips}">← Back to Trips</a></p>
+</body>
+</html>

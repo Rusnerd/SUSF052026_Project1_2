@@ -133,18 +133,20 @@ public class PhotoTripController {
             throw new IllegalStateException("HOST access required. (Implement login next.)");
         }
     }
-    private void requireRole(HttpSession session, UserRole required) {
+    private void requireRole(HttpSession session, UserRole requiredRole) {
         String roleStr = (String) session.getAttribute("role");
-        if (roleStr == null || !UserRole.valueOf(roleStr).equals(required) &&
-                !UserRole.valueOf(roleStr).equals(UserRole.HOST)) { // HOST can do more
-            throw new IllegalStateException("Access denied. Required role: " + required);
+        if (roleStr == null) {
+            throw new IllegalStateException("You must be logged in.");
+        }
+        UserRole userRole = UserRole.valueOf(roleStr);
+        if (userRole != requiredRole && userRole != UserRole.HOST) { // HOST can do almost everything
+            throw new IllegalStateException("Access denied. Required: " + requiredRole);
         }
     }
-
     // PhotoTripController:
-    @GetMapping("/host/photo-trips/new")
-    public String newForm(HttpSession session, Model model) {
-        requireRole(session, UserRole.HOST);
-    }
+    //@GetMapping("/host/photo-trips/new")
+    //public String newForm(HttpSession session, Model model) {
+    //    requireRole(session, UserRole.HOST);
+    //}
 }
 

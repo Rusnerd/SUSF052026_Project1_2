@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Booking</title>
+</head>
+<body>
+<h1>Book This Trip</h1>
+
+<div th:if="${success}" style="color:green" th:text="${success}"></div>
+
+<form th:action="@{/bookings}" th:object="${dto}" method="post">
+    <input type="hidden" th:field="*{tripId}" />
+
+    <div>
+        <label>Number of People:</label>
+        <input type="number" th:field="*{numberOfPeople}" min="1" required />
+        <span style="color:red" th:errors="*{numberOfPeople}"></span>
+    </div>
+
+    <div>
+        <label>Additional Notes:</label><br>
+        <textarea th:field="*{notes}" rows="4" cols="50"></textarea>
+    </div>
+
+    <button type="submit">Confirm Booking</button>
+</form>
+
+<p><a th:href="@{/photo-trips}">← Back to Trips</a></p>
+</body>
+</html>
