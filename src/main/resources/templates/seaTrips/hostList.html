@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Host Sea Trips</title></head>
+<body>
+<h1>Host: Manage Sea Trips</h1>
+
+<p><a th:href="@{/host/photo-trips/new}">Create new</a></p>
+
+<ul>
+    <li th:each="t : ${trips}">
+        <a th:href="@{/photo-trips/{id}(id=${t.id})}" th:text="${t.title}">Trip</a>
+        (<a th:href="@{/host/photo-trips/{id}/edit(id=${t.id})}">edit</a>)
+    </li>
+</ul>
+
+<p><a th:href="@{/photo-trips}">Public view</a></p>
+</body>
+</html>

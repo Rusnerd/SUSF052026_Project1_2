@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Sea Trips</title></head>
+<body>
+<h1>Sea Trips</h1>
+<ul>
+    <li th:each="t : ${trips}">
+        <a th:href="@{/sea-trips/{id}(id=${t.id})}" th:text="${t.title}"></a>
+    </li>
+</ul>
+<a th:href="@{/host/sea-trips}">Host Management</a>
+</body>
+</html>
