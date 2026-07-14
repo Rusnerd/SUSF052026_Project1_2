@@ -1,20 +1,88 @@
 package app.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
-import org.springframework.data.annotation.Id;
-
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
-// app/model/entity/SeaTrip.java
 @Entity
 @Table(name = "sea_trips")
 public class SeaTrip {
+
     @Id
     @UuidGenerator
-    @Column(columnDefinition = "char(36)") private UUID id;
-    // ... common fields + sea-specific (e.g. marineActivities, destinationPort)
-    // getters, constructor, updateFrom(...)
+    @Column(columnDefinition = "char(36)", nullable = false, updatable = false)
+    private UUID id;
+
+    @Column(nullable = false, length = 120)
+    private String title;
+
+    @Column(nullable = false, length = 1000)
+    private String description;
+
+    @Column(nullable = false, length = 120)
+    private String location;
+
+    @Column(nullable = false)
+    private LocalDate startDate;
+
+    @Column(nullable = false)
+    private LocalDate endDate;
+
+    @Column(nullable = false)
+    private Integer maxParticipants;
+
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal pricePerPerson;
+
+    @Column(length = 500)
+    private String marineActivities;   // Sea-specific field
+
+    @Column(length = 200)
+    private String destinationPort;
+
+    protected SeaTrip() {}
+
+    public SeaTrip(String title, String description, String location,
+                   LocalDate startDate, LocalDate endDate,
+                   Integer maxParticipants, BigDecimal pricePerPerson,
+                   String marineActivities, String destinationPort) {
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.maxParticipants = maxParticipants;
+        this.pricePerPerson = pricePerPerson;
+        this.marineActivities = marineActivities;
+        this.destinationPort = destinationPort;
+    }
+
+    public SeaTrip(String title, String description, String location, LocalDate startDate, LocalDate endDate, Integer maxParticipants, BigDecimal pricePerPerson) {
+    }
+
+    public void updateFrom(SeaTrip other) {
+        this.title = other.title;
+        this.description = other.description;
+        this.location = other.location;
+        this.startDate = other.startDate;
+        this.endDate = other.endDate;
+        this.maxParticipants = other.maxParticipants;
+        this.pricePerPerson = other.pricePerPerson;
+        this.marineActivities = other.marineActivities;
+        this.destinationPort = other.destinationPort;
+    }
+
+    // Getters
+    public UUID getId() { return id; }
+    public String getTitle() { return title; }
+    public String getDescription() { return description; }
+    public String getLocation() { return location; }
+    public LocalDate getStartDate() { return startDate; }
+    public LocalDate getEndDate() { return endDate; }
+    public Integer getMaxParticipants() { return maxParticipants; }
+    public BigDecimal getPricePerPerson() { return pricePerPerson; }
+    public String getMarineActivities() { return marineActivities; }
+    public String getDestinationPort() { return destinationPort; }
 }
