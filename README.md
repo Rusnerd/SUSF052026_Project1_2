@@ -11,9 +11,10 @@
 - PhotoTrip (main)
 - Booking
 - ItineraryItem
-- (add SeaTrip / MountainTrip similarly)
+- SeaTrip
+- MountainTrip 
 
-## Functionalities (4+ valid)
+## Functionalities 
 1. Host CRUD PhotoTrip
 2. Create / Cancel Booking (TRAVELER)
 3. Manage Itinerary Items (GUIDE/HOST)
@@ -22,7 +23,7 @@
 ## Security
 Session-based login with roles (HOST, GUIDE, TRAVELER)
 
-## Pages (8+)
+## Pages 
 - Home / photo-trips list
 - Trip details
 - Host create/edit
@@ -30,4 +31,5 @@ Session-based login with roles (HOST, GUIDE, TRAVELER)
 - My Bookings
 - Itinerary list + new
 
-Run with: `./mvnw spring-boot:run`
+Run with: `./mvn spring-boot:run
+`
