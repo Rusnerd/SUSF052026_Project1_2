@@ -23,7 +23,7 @@ public class SeaTripController {
         this.seaTripService = seaTripService;
     }
 
-    // Public list
+    // Public
     @GetMapping("/sea-trips")
     public String list(Model model) {
         model.addAttribute("trips", seaTripService.listAll());
@@ -74,8 +74,8 @@ public class SeaTripController {
     public String editForm(HttpSession session, @PathVariable UUID id, Model model) {
         requireHost(session);
         SeaTrip trip = seaTripService.getById(id);
+
         SeaTripCreateUpdateDto dto = new SeaTripCreateUpdateDto();
-        // map fields...
         dto.setTitle(trip.getTitle());
         dto.setDescription(trip.getDescription());
         dto.setLocation(trip.getLocation());
@@ -92,12 +92,14 @@ public class SeaTripController {
     }
 
     @PutMapping("/host/sea-trips/{id}")
-    public String update(HttpSession session, @PathVariable UUID id,
+    public String update(HttpSession session,
+                         @PathVariable UUID id,
                          @Valid @ModelAttribute("dto") SeaTripCreateUpdateDto dto,
-                         BindingResult bindingResult) {
+                         BindingResult bindingResult,
+                         Model model) {   // ← FIXED: added Model model
         requireHost(session);
         if (bindingResult.hasErrors()) {
-            model.addAttribute("id", id); // note: model needs to be param
+            model.addAttribute("id", id);
             return "seaTrips/edit";
         }
         try {

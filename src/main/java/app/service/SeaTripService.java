@@ -1,5 +1,6 @@
 package app.service;
 
+import app.model.entity.MountainTrip;
 import app.model.entity.SeaTrip;
 import app.repository.SeaTripRepository;
 import app.service.exceptions.InvalidTripDateRangeException;
@@ -18,13 +19,13 @@ public class SeaTripService {
 
     private final SeaTripRepository photoTripRepository;
 
-    public SeaTripService(SeaTripRepository photoTripRepository) {
-        this.photoTripRepository = photoTripRepository;
+    public SeaTripService(SeaTripRepository seaTripRepository) {
+        this.seaTripRepository = seaTripRepository;
     }
 
     @Transactional(readOnly = true)
     public List<SeaTrip> listAll() {
-        return photoTripRepository.findAll();
+        return seaTripRepository.findAll();
     }
 
     @Transactional(readOnly = true)
@@ -44,7 +45,7 @@ public class SeaTripService {
                 dto.getMaxParticipants(),
                 dto.getPricePerPerson()
         );
-        return photoTripRepository.save(trip);
+        return seaTripRepository.save(trip);
     }
 
     public SeaTrip update(UUID id, SeaTripCreateUpdateDto dto) {
@@ -66,7 +67,7 @@ public class SeaTripService {
 
     public void delete(UUID id) {
         SeaTrip existing = getById(id);
-        photoTripRepository.delete(existing);
+        seaTripRepository.delete(existing);
     }
 
     private void validateBusiness(SeaTripCreateUpdateDto dto) {

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>New Sea Trip</title></head>
+<body>
+<h1>Create Sea Trip</h1>
+<form th:action="@{/host/sea-trips}" th:object="${dto}" method="post">
+    <!-- All fields like PhotoTrip + marineActivities and destinationPort -->
+    <div>
+        <label>Title</label>
+        <input th:field="*{title}" />
+        <span style="color:red" th:errors="*{title}"></span>
+    </div>
+    <!-- ... repeat for other fields ... -->
+    <button type="submit">Create</button>
+</form>
+</body>
+</html>
